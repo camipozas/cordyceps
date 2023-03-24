@@ -1,23 +1,18 @@
-import { Octokit } from "@octokit/core";
+import { request } from "@octokit/request";
 import { env } from "./env/env";
-import { paginateRest } from "@octokit/plugin-paginate-rest";
-
-const MyOctokit = Octokit.plugin(paginateRest);
-
-const octokit = new MyOctokit({
-  auth: env.GITHUB_TOKEN,
-});
 
 export const getAllRepositories = async () => {
-  const repoData = await octokit.paginate(
-    "GET /orgs/{org}/repos",
-    {
-      org: env.GITHUB_ORG,
+  const response = await request("GET /orgs/{org}/repos", {
+    org: env.GITHUB_ORG,
+    headers: {
+      authorization: `token ${env.GITHUB_TOKEN}`,
     },
-    (response) => response.data.map((repo) => repo.name)
-  );
+    per_page: 100,
+  });
 
-  return repoData.filter((repo) => repo.startsWith("mach-"));
+  const repoData = response.data;
+  const repoNames = repoData.map((repo) => repo.name);
+  return repoNames.filter((repoName: string) => repoName.startsWith("mach-"));
 };
 
 export const accessibleRepos = async (repoNames: string[]) => {
@@ -25,9 +20,12 @@ export const accessibleRepos = async (repoNames: string[]) => {
 
   for (const repoName of repoNames) {
     try {
-      await octokit.request("GET /repos/{owner}/{repo}", {
+      const repoInfo = await request("GET /repos/{owner}/{repo}", {
         owner: env.GITHUB_ORG,
         repo: repoName,
+        headers: {
+          authorization: `token ${env.GITHUB_TOKEN}`,
+        },
       });
       accessibleRepos.push(repoName);
     } catch (error) {
