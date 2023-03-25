@@ -25,7 +25,7 @@ export const cloneRepositories = async (repoNames: string[]) => {
       log(chalk.yellow(`❌ ${repoName} already exists in ${localPath}`));
     } else {
       await git.clone(repoUrl, localPath);
-      log(chalk.green(`✅ Cloned ${repoName} into ${localPath}`));
+      log(chalk.green(`✅ Cloned ${repoName}`) + chalk.yellow(` 📁 ${localPath}`));
     }
   }
 };
