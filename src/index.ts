@@ -1,5 +1,5 @@
-import { getAllRepositories, accessibleRepos } from "./get-repositories";
-import { cloneRepositories } from "./clone-repositories";
+import { getAllRepositories, accessibleRepos } from './get-repositories';
+import { cloneRepositories } from './clone-repositories';
 
 const main = async () => {
   const allRepos = await getAllRepositories();

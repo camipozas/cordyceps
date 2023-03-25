@@ -1,6 +1,6 @@
-import simpleGit, { SimpleGit } from "simple-git";
-import { env } from "./env/env";
-import path from "path";
+import simpleGit, { SimpleGit } from 'simple-git';
+import { env } from './env/env';
+import path from 'path';
 
 /**
  * It clones a list of repositories into a local folder
