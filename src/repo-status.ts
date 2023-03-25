@@ -18,13 +18,13 @@ export const repoStatus = async (repoNames: string[]) => {
     const localPath = path.join(env.HOME, env.FOLDER, repoName);
     const status = await git.status();
 
-    try {
-      if (status.behind > 0) {
+    if (status.behind > 0) {
+      try {
         await git.pull();
         log(chalk.green(`🐛 Pulled latest changes for ${repoName}`));
+      } catch (error) {
+        log(chalk.red(`❌ ${repoName} can't be pulled`));
       }
-    } catch (error) {
-      log(chalk.red(`❌ ${repoName} can't be pulled`));
     }
   }
 };
