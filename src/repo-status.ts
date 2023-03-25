@@ -15,10 +15,13 @@ export const repoStatus = async (repoNames: string[]) => {
   log(chalk.blue.bold('🚀 Checking repository status 🚀'));
 
   for (const repoName of repoNames) {
-    const localPath = path.join(env.HOME, env.FOLDER, repoName);
-    const status = await git.status();
+    const repoPath = path.join(env.HOME, env.FOLDER, repoName);
+    await git.cwd(repoPath);
+    const { behind } = await git.status();
 
-    if (status.behind > 0) {
+    if (behind === 0) {
+      log(chalk.magenta(`🐛 ${repoName} is up to date`));
+    } else {
       try {
         await git.pull();
         log(chalk.green(`🐛 Pulled latest changes for ${repoName}`));
