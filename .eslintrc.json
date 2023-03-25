@@ -1,6 +1,6 @@
 {
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": ["@typescript-eslint", "prettier", "import"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -8,7 +8,8 @@
     "eslint-config-prettier"
   ],
   "parserOptions": {
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.json",
+    "sourceType": "module"
   },
   "rules": {
     "@typescript-eslint/no-floating-promises": "off",
@@ -16,8 +17,21 @@
     "indent": ["error", 2],
     "quotes": ["error", "single"],
     "no-unused-vars": "warn",
-    "no-console": "warn",
-    "no-undef": "warn",
-    "no-use-before-define": "warn"
+    "no-console": "off",
+    "no-undef": "off",
+    "no-use-before-define": "warn",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          ["builtin", "external"],
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always-and-inside-groups"
+      }
+    ]
   }
 }

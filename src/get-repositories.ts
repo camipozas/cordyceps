@@ -1,5 +1,10 @@
 import { request } from '@octokit/request';
+
+import chalk from 'chalk';
+
 import { env } from './env/env';
+
+const log = console.log;
 
 /**
  * It makes a request to the GitHub API to get a list of all the repositories in the organization, and
@@ -43,9 +48,14 @@ export const accessibleRepos = async (repoNames: string[]) => {
       });
       accessibleRepos.push(repoName);
     } catch (error) {
-      console.log(`Error: ${repoName} is not accessible`);
+      log(chalk.red(`❌ ${repoName} is not accessible`));
     }
   }
+
+  log(chalk.green(`✅ ${accessibleRepos.length} accessible repos.`));
+  log(chalk.red(`❌ ${repoNames.length - accessibleRepos.length} inaccessible repos`));
+  log(chalk.blue.bold('🚀 List of repos 🚀'));
+  log(accessibleRepos.map((repoName) => chalk.green(`✅ ${repoName}`)).join('\n'));
 
   return accessibleRepos;
 };
