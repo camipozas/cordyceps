@@ -1,5 +1,5 @@
-import { request } from "@octokit/request";
-import { env } from "./env/env";
+import { request } from '@octokit/request';
+import { env } from './env/env';
 
 /**
  * It makes a request to the GitHub API to get a list of all the repositories in the organization, and
@@ -7,7 +7,7 @@ import { env } from "./env/env";
  * @returns An array of strings.
  */
 export const getAllRepositories = async () => {
-  const response = await request("GET /orgs/{org}/repos", {
+  const response = await request('GET /orgs/{org}/repos', {
     org: env.GITHUB_ORG,
     headers: {
       authorization: `token ${env.GITHUB_TOKEN}`,
@@ -21,7 +21,7 @@ export const getAllRepositories = async () => {
   }
 
   const repoNames = repoData.map((repo) => repo.name);
-  return repoNames.filter((repoName: string) => repoName.startsWith("mach-"));
+  return repoNames.filter((repoName: string) => repoName.startsWith('mach-'));
 };
 
 /**
@@ -34,7 +34,7 @@ export const accessibleRepos = async (repoNames: string[]) => {
 
   for (const repoName of repoNames) {
     try {
-      const repoInfo = await request("GET /repos/{owner}/{repo}", {
+      await request('GET /repos/{owner}/{repo}', {
         owner: env.GITHUB_ORG,
         repo: repoName,
         headers: {
