@@ -1,6 +1,39 @@
 {
     "singleQuote": true,
-    "semi": true,
-    "tabWidth": 2,
-    "trailingComma": "es5"
+    "trailingComma": "all",
+    "overrides": [
+        {
+            "files": "*.ts",
+            "options": {
+                "parser": "typescript",
+                "printWidth": 100,
+                "tabWidth": 2,
+                "useTabs": false,
+                "semi": true,
+                "singleQuote": true,
+                "quoteProps": "consistent",
+                "arrowParens": "always",
+                "bracketSpacing": true,
+                "jsxBracketSameLine": false,
+                "endOfLine": "lf",
+                "importOrder": [
+                    "builtin",
+                    "external",
+                    "internal",
+                    "parent",
+                    "sibling",
+                    "index"
+                ],
+                "importDeclarationSorter": {
+                    "order": [
+                        "single",
+                        "multiple",
+                        "namespace",
+                        "type",
+                        "default"
+                    ]
+                }
+            }
+        }
+    ]
 }
