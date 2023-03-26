@@ -3,6 +3,7 @@ import { request } from '@octokit/request';
 import chalk from 'chalk';
 
 import { env } from './env/env';
+import ProgressBar from './utils/progress-bar';
 
 const log = console.log;
 
@@ -47,6 +48,11 @@ export const getPages = async () => {
 export const getAllRepositories = async (pages: number): Promise<string[]> => {
   const repos: string[] = [];
 
+  const bar = new ProgressBar('👑 Fetching repositories 👑');
+
+  const totalRequests = pages;
+  bar.init(totalRequests);
+
   for (let page = 1; page <= pages; page++) {
     const response = await request('GET /orgs/{org}/repos', {
       org: env.GITHUB_ORG,
@@ -63,6 +69,7 @@ export const getAllRepositories = async (pages: number): Promise<string[]> => {
     }
 
     repos.push(...repoData.map((repo: Repo) => repo.name));
+    bar.update(page);
   }
 
   return repos;
@@ -75,6 +82,10 @@ export const getAllRepositories = async (pages: number): Promise<string[]> => {
  */
 export const accessibleRepos = async (repoNames: string[]) => {
   const accessibleRepos = [];
+
+  const bar = new ProgressBar('🛫 Checking for access 🛫');
+
+  bar.init(repoNames.length);
 
   for (const repoName of repoNames) {
     try {
@@ -89,8 +100,10 @@ export const accessibleRepos = async (repoNames: string[]) => {
     } catch (error) {
       log(chalk.red(`❌ ${repoName} is not accessible`));
     }
+    bar.update(accessibleRepos.length);
   }
 
+  log('');
   log(chalk.green(`✅ ${accessibleRepos.length} accessible repos.`));
   log(chalk.red(`❌ ${repoNames.length - accessibleRepos.length} inaccessible repos`));
   log(chalk.blue.bold('🚀 List of repos 🚀'));
