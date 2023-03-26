@@ -15,6 +15,8 @@ const log = console.log;
  */
 export const cloneRepositories = async (repoNames: string[]) => {
   const git: SimpleGit = simpleGit();
+
+  let clonedRepos = 0;
   log(chalk.blue.bold('🚀 Cloning repositories 🚀'));
 
   for (const repoName of repoNames) {
@@ -27,5 +29,7 @@ export const cloneRepositories = async (repoNames: string[]) => {
       await git.clone(repoUrl, localPath);
       log(chalk.green(`✅ Cloned ${repoName}`) + chalk.yellow(` 📁 ${localPath}`));
     }
+    clonedRepos++;
   }
+  log(chalk.green(`📈 Successfully cloned ${clonedRepos}/${repoNames.length} repositories`));
 };
