@@ -20,7 +20,7 @@ export default class ProgressBar {
     this.total = total;
     this.current = 0;
     this.startTime = Date.now();
-    this.update(this.current);
+    this.update(0);
   }
 
   update(current: number): void {
