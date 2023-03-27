@@ -4,19 +4,18 @@ import { getPages, getAllRepositories, accessibleRepos } from './get-repositorie
 import { cloneRepositories } from './clone-repositories';
 import { repoStatus } from './repo-status';
 
-/**
- * We get the number of pages of repositories, get all the repositories, filter out the ones we can't
- * access, clone the ones we can, and then check the status of the clones
- */
-const main = async () => {
-  const log = console.log;
-  log(chalk.blue.bold('🚀 Create your own GitHub organization backup script 🚀'));
-  const pages = await getPages();
-  log(chalk.magenta.bold(`🚀 There are ${pages} pages of repositories 🚀`));
-  const allRepos = await getAllRepositories(pages);
-  const accessible = await accessibleRepos(allRepos);
-  await cloneRepositories(accessible);
-  await repoStatus(accessible);
+export const main = async (org: string, folder: string, clone: boolean, status: boolean) => {
+  console.log(chalk.blue.bold(`🚀 Getting repositories for ${org} 🚀`));
+  const pages = await getPages(org);
+  console.log(chalk.magenta.bold(`🚀 There are ${pages} pages of repositories 🚀`));
+  const allRepos = await getAllRepositories(pages, org);
+  const accessible = await accessibleRepos(allRepos, org);
+  if (clone) {
+    console.log(chalk.blue.bold('🚀 Cloning repositories 🚀'));
+    await cloneRepositories(accessible, org, folder);
+    if (status) {
+      console.log(chalk.blue.bold('🚀 Checking repository status 🚀'));
+      await repoStatus(accessible, folder);
+    }
+  }
 };
-
-main();

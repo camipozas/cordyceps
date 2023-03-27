@@ -6,10 +6,6 @@ dotenv.config();
 
 const envSchema = z.object({
   GITHUB_TOKEN: z.string(),
-  GITHUB_ORG: z.string(),
-  HOME: z.string(),
-  FOLDER: z.string(),
-  GITHUB_USERNAME: z.string(),
 });
 
 export const env = envSchema.parse(process.env);
