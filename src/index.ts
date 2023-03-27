@@ -53,12 +53,12 @@ const runCLI = async () => {
     {
       type: 'text',
       name: 'org',
-      message: 'Enter the GitHub organization:',
+      message: '🏢 Enter the GitHub organization:',
     },
     {
       type: 'text',
       name: 'folder',
-      message: 'Enter the folder to save the repositories:',
+      message: '📁Enter the folder to save the repositories:',
     },
   ];
 
@@ -72,6 +72,13 @@ const runCLI = async () => {
     switch (option) {
       case Options.GetRepositoriesList:
         await getRepositoriesList(org);
+        [
+          {
+            type: 'text',
+            name: 'org',
+            message: '🏢 Enter the GitHub organization:',
+          },
+        ];
         break;
       case Options.GetRepositoriesListAndCloneIt:
         await getRepositoriesAndCloneIt(org, folder);
