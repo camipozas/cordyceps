@@ -34,22 +34,55 @@ In the serie [The Last of Us](https://en.wikipedia.org/wiki/The_Last_of_Us) Cord
 
 3.  You need to create a GitHub Personal Access Token. You can do it [here](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token). Then you need to add it to the `.env` file. In the same way, you can add the organization name, the path where you want to clone the repositories and the branch you want to clone (default is Home).
 
-    ```
-    GITHUB_TOKEN=
-    ```
+There are two ways to do it in GitHub:
 
-4.  Run the script:
+- **Fine-grained personal access tokens (beta):** You can select the permissions you want to give to the token.
+  Here y have to select in resource owner: your organization. Then you have to select the permissions you want to give to the token. In this case, you need to select repository access: `All repositories`.
 
-    ```
-    cordyceps
-    ```
+  Then at repositories permissions you have to select:
 
-    ![Get repositories](/img/img2.png 'Get repositories')
+  - Commit statuses: `read-only`
+  - Contents: `read-only`
+  - Metadata: `read-only`
+  - Pull requests: `read-only`
 
-    ### You need to know
+  ![Fine-grained personal access tokens](/img/grained-token.png 'Fine-grained personal access tokens')
 
-    1. **GitHub Organization:** The organization you want to clone.
-    2. **Folder:** The path where you want to clone the repositories. If the folder doesn't exist, it will be created.
+- Personal access tokens (classic): Here are the permissions you need to give to the token:
+
+  - repo: `Full control of private repositories`
+  - admin:org: `read:org`
+
+  ![Personal access tokens](/img/classic-token.png 'Personal access tokens')
+
+  ```
+  GITHUB_TOKEN=
+  ```
+
+4. Build the project and install it globally:
+
+   ```
+   yarn build
+   ```
+
+   ```
+   npm install -g .
+   ```
+
+> Is important to know if you change the `.env` file you need to build the project again.
+
+5. Run the script:
+
+```
+cordyceps
+```
+
+![Get repositories](/img/img2.png 'Get repositories')
+
+### You need to know
+
+1.  **GitHub Organization:** The organization you want to clone.
+2.  **Folder:** The path where you want to clone the repositories. If the folder doesn't exist, it will be created.
 
 ## Roadmap 🚀
 
