@@ -50,20 +50,20 @@ There are two ways to do it in GitHub:
   - Metadata: `read-only`
   - Pull requests: `read-only`
 
-  ![Fine-grained personal access tokens](/img/grained-token.png 'Fine-grained personal access tokens')
+  ![Fine-grained personal access tokens](/img/grained-token.jpeg 'Fine-grained personal access tokens')
 
 - Personal access tokens (classic): Here are the permissions you need to give to the token:
 
   - repo: `Full control of private repositories`
   - admin:org: `read:org`
 
-  ![Personal access tokens](/img/classic-token.png 'Personal access tokens')
+  ![Personal access tokens](/img/classic-token.jpeg 'Personal access tokens')
 
   ```
   GITHUB_TOKEN=
   ```
 
-4. Build the project and install it globally:
+1. Build the project and install it globally:
 
    ```
    yarn build
