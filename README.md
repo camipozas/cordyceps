@@ -1,5 +1,19 @@
 # Cordyceps 🐛
 
+<p>
+  <a href="https://github.com/camipozas/cordyceps">
+    <img alt="Top Language" src="https://img.shields.io/github/languages/top/camipozas/cordyceps"/>
+  </a>
+  <a href="https://github.com/camipozas/cordyceps/blob/main/LICENSE">
+    <img alt="License" src="https://img.shields.io/github/license/camipozas/cordyceps"/>
+  </a>
+  <a href="https://github.com/camipozas/cordyceps">
+    <img alt="Repo Size" src="https://img.shields.io/github/repo-size/camipozas/cordyceps"/>
+  </a>
+    <a href="https://img.shields.io/github/last-commit/camipozas/cordyceps">
+    <img alt="Last Commit" src="https://img.shields.io/github/last-commit/camipozas/cordyceps"/>
+</p>
+
 In the serie [The Last of Us](https://en.wikipedia.org/wiki/The_Last_of_Us) Cordyceps is a fungus that infects humans and turns them into zombies. It's a very interesting fungus because it can infect other fungi and turn them into zombies too. In this case, Cordyceps is a CLI tool that infects your GitHub organization and clones all the repositories in a single command.
 
 ![Initial Screen](/img/img1.png 'Initial screen')
