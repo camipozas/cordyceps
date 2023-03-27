@@ -20,13 +20,12 @@ This is a simple script to get all repositories from a GitHub organization and t
 
     ```
     GITHUB_TOKEN=
-    GITHUB_ORG=
-    FOLDER=
-    GITHUB_USERNAME=
     ```
 
 4.  Run the script:
 
     ```
-    yarn start
+    yarn dev
     ```
+
+    > If the folder doesn't exist, it will be created.

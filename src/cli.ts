@@ -1,5 +1,6 @@
 import chalk from 'chalk';
 import prompts, { PromptObject } from 'prompts';
+
 import { main } from './index';
 
 const enum Options {
