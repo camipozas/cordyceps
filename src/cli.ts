@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import chalk from 'chalk';
 import prompts, { PromptObject } from 'prompts';
 
@@ -59,25 +61,26 @@ const runCLI = async () => {
 
   const { org, folder, option } = answers;
 
-  switch (option) {
-    case Options.GetRepositoriesList:
-      await main(org, folder, false, false);
-      break;
-    case Options.GetRepositoriesListAndCloneIt:
-      await main(org, folder, true, false);
-      break;
-    case Options.GetRepositoriesListCloneItAndGetStatus:
-      await main(org, folder, true, true);
-      break;
-    case Options.GetStatus:
-      await main(org, folder, false, true);
-      break;
-    case Options.EndProgram:
-      console.log(chalk.magenta.bold('👋 Bye!'));
-      break;
-    default:
-      console.log(chalk.red.bold('Invalid option'));
-      break;
+  if (option === Options.EndProgram) {
+    console.log(chalk.magenta.bold('👋 Bye!'));
+  } else {
+    switch (option) {
+      case Options.GetRepositoriesList:
+        await main(org, folder, false, false);
+        break;
+      case Options.GetRepositoriesListAndCloneIt:
+        await main(org, folder, true, false);
+        break;
+      case Options.GetRepositoriesListCloneItAndGetStatus:
+        await main(org, folder, true, true);
+        break;
+      case Options.GetStatus:
+        await main(org, folder, false, true);
+        break;
+      default:
+        console.log(chalk.red.bold('Invalid option'));
+        break;
+    }
   }
 };
 
