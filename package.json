@@ -2,7 +2,10 @@
   "name": "get-org-repo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/cli.js",
+  "bin": {
+    "cordyceps": "./dist/cli.js"
+  },
   "scripts": {
     "init": "tsc --init",
     "dev": "ts-node-dev --respawn src/cli.ts",
