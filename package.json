@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "init": "tsc --init",
-    "dev": "ts-node-dev --respawn src/index.ts",
+    "dev": "ts-node-dev --respawn src/cli.ts",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.ts\"",
@@ -41,7 +41,9 @@
   "dependencies": {
     "@octokit/core": "^4.2.0",
     "@octokit/rest": "^19.0.7",
+    "@types/prompts": "^2.4.3",
     "dotenv": "^16.0.3",
+    "prompts": "^2.4.2",
     "simple-git": "^3.16.1",
     "zod": "^3.20.6"
   }
