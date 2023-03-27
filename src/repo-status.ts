@@ -2,20 +2,18 @@ import chalk from 'chalk';
 import path from 'path';
 import simpleGit, { SimpleGit } from 'simple-git';
 
-import { env } from './env/env';
-
 const log = console.log;
 
 /**
  * It checks the status of the local repository and pulls the latest changes if there are any
  * @param {string[]} repoNames - An array of repository names.
  */
-export const repoStatus = async (repoNames: string[]) => {
+export const repoStatus = async (repoNames: string[], folder: string) => {
   const git: SimpleGit = simpleGit();
   log(chalk.blue.bold('🚀 Checking repository status 🚀'));
 
   for (const repoName of repoNames) {
-    const repoPath = path.join(env.HOME, env.FOLDER, repoName);
+    const repoPath = path.join(process.cwd(), folder, repoName);
     await git.cwd(repoPath);
     const { behind } = await git.status();
 

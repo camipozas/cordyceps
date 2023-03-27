@@ -1,6 +1,6 @@
-# Get GitHub Organization Repositories
+# Cordyceps 🐛
 
-This is a simple script to get all repositories from a GitHub organization and then clone them.
+In the serie [The Last of Us](https://en.wikipedia.org/wiki/The_Last_of_Us) Cordyceps is a fungus that infects humans and turns them into zombies. It's a very interesting fungus because it can infect other fungi and turn them into zombies too. In this case, Cordyceps is a CLI tool that infects your GitHub organization and clones all the repositories in a single command.
 
 ## Usage
 
@@ -20,13 +20,10 @@ This is a simple script to get all repositories from a GitHub organization and t
 
     ```
     GITHUB_TOKEN=
-    GITHUB_ORG=
-    FOLDER=
-    GITHUB_USERNAME=
     ```
 
 4.  Run the script:
 
     ```
-    yarn start
+    cordyceps
     ```

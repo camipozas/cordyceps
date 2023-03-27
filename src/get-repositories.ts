@@ -15,9 +15,9 @@ interface Repo {
  * It gets the number of pages of repositories in the GitHub organization
  * @returns The number of pages of repositories in the GitHub organization.
  */
-export const getPages = async () => {
+export const getPages = async (org: string) => {
   const response = await request('GET /orgs/{org}/repos', {
-    org: env.GITHUB_ORG,
+    org: org,
     headers: {
       authorization: `token ${env.GITHUB_TOKEN}`,
     },
@@ -45,7 +45,7 @@ export const getPages = async () => {
  * @param {number} pages - number - The number of pages of repositories to fetch.
  * @returns An array of strings
  */
-export const getAllRepositories = async (pages: number): Promise<string[]> => {
+export const getAllRepositories = async (pages: number, org: string): Promise<string[]> => {
   const repos: string[] = [];
 
   const bar = new ProgressBar('👑 Fetching repositories 👑');
@@ -55,7 +55,7 @@ export const getAllRepositories = async (pages: number): Promise<string[]> => {
 
   for (let page = 1; page <= pages; page++) {
     const response = await request('GET /orgs/{org}/repos', {
-      org: env.GITHUB_ORG,
+      org: org,
       headers: {
         authorization: `token ${env.GITHUB_TOKEN}`,
       },
@@ -80,8 +80,8 @@ export const getAllRepositories = async (pages: number): Promise<string[]> => {
  * @param {string[]} repoNames - An array of repo names to check for access
  * @returns An array of repo names that are accessible
  */
-export const accessibleRepos = async (repoNames: string[]) => {
-  const accessibleRepos = [];
+export const accessibleRepos = async (repoNames: string[], org: string) => {
+  const accessibleRepos: string[] = [];
 
   const bar = new ProgressBar('🛫 Checking for access 🛫');
 
@@ -90,7 +90,7 @@ export const accessibleRepos = async (repoNames: string[]) => {
   for (const repoName of repoNames) {
     try {
       await request('GET /repos/{owner}/{repo}', {
-        owner: env.GITHUB_ORG,
+        owner: org,
         repo: repoName,
         headers: {
           authorization: `token ${env.GITHUB_TOKEN}`,
