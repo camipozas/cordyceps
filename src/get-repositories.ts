@@ -40,9 +40,9 @@ export const getPages = async (org: string) => {
 };
 
 /**
- * It makes a request to the GitHub API to get a list of all the repositories in the organization, and
- * returns an array of the names of those repositories
- * @param {number} pages - number - The number of pages of repositories to fetch.
+ * It fetches all the repositories for a given organization and returns an array of repository names
+ * @param {number} pages - number - The number of pages to fetch.
+ * @param {string} org - The organization name
  * @returns An array of strings
  */
 export const getAllRepositories = async (pages: number, org: string): Promise<string[]> => {
@@ -76,9 +76,11 @@ export const getAllRepositories = async (pages: number, org: string): Promise<st
 };
 
 /**
- * It takes an array of repo names, and returns an array of repo names that are accessible by the user
- * @param {string[]} repoNames - An array of repo names to check for access
- * @returns An array of repo names that are accessible
+ * It takes an array of repo names and an organization name, and returns an array of repo names that
+ * the user has access to
+ * @param {string[]} repoNames - An array of strings that are the names of the repos you want to check.
+ * @param {string} org - The organization name
+ * @returns An array of strings
  */
 export const accessibleRepos = async (repoNames: string[], org: string) => {
   const accessibleRepos: string[] = [];
@@ -110,4 +112,19 @@ export const accessibleRepos = async (repoNames: string[], org: string) => {
   log(accessibleRepos.map((repoName) => chalk.green(`✅ ${repoName}`)).join('\n'));
 
   return accessibleRepos;
+};
+
+/**
+ * It gets all the repositories for a given organization, and returns the ones that are accessible
+ * @param {string} org - The organization you want to get the repositories for.
+ * @returns An array of repositories that the user has access to.
+ */
+export const getRepositoriesList = async (org: string) => {
+  log(chalk.blue.bold(`🚀 Getting repositories for ${org} 🚀`));
+  const pages = await getPages(org);
+  log(chalk.magenta.bold(`🚀 There are ${pages} pages of repositories 🚀`));
+  const allRepos = await getAllRepositories(pages, org);
+  const accessible = await accessibleRepos(allRepos, org);
+
+  return accessible;
 };

@@ -4,11 +4,11 @@
   "description": "",
   "main": "./dist/cli.js",
   "bin": {
-    "cordyceps": "./dist/cli.js"
+    "cordyceps": "./dist/index.js"
   },
   "scripts": {
     "init": "tsc --init",
-    "dev": "ts-node-dev --respawn src/cli.ts",
+    "dev": "ts-node-dev --respawn src/index.ts",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.ts\"",
