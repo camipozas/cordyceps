@@ -2,6 +2,8 @@
 
 In the serie [The Last of Us](https://en.wikipedia.org/wiki/The_Last_of_Us) Cordyceps is a fungus that infects humans and turns them into zombies. It's a very interesting fungus because it can infect other fungi and turn them into zombies too. In this case, Cordyceps is a CLI tool that infects your GitHub organization and clones all the repositories in a single command.
 
+![Initial Screen](/img/img1.png 'Initial screen')
+
 ## Usage
 
 1.  First, clone this repository:
@@ -27,3 +29,15 @@ In the serie [The Last of Us](https://en.wikipedia.org/wiki/The_Last_of_Us) Cord
     ```
     cordyceps
     ```
+
+    ![Get repositories](/img/img2.png 'Get repositories')
+
+    ### You need to know
+
+    1. **GitHub Organization:** The organization you want to clone.
+    2. **Folder:** The path where you want to clone the repositories. If the folder doesn't exist, it will be created.
+
+## Roadmap 🚀
+
+- [ ] If you select _get all repositories_, don't ask for the folder name.
+- [ ] If you select _break_, don't ask GitHub organization or folder name.
