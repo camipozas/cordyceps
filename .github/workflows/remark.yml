@@ -26,5 +26,5 @@ jobs:
         run: yarn remark
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: Apply automatic fixes by remark
+          commit_message: 🚨 apply automatic fixes by remark
           
