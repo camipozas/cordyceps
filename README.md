@@ -61,7 +61,7 @@ There are two ways to do it in GitHub:
 
         GITHUB_TOKEN=
 
-1.  Build the project and install it globally:
+4.  Build the project and install it globally:
 
         yarn build
 
