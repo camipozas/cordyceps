@@ -32,9 +32,9 @@ git clone https://github.com/camipozas/cordyceps.git
 
 2.  Install the dependencies:
 
-  ```bash
-  yarn install
-  ```
+```bash
+yarn install
+```
 
 3.  Create a GitHub Personal Access Token [here](https://docs.github.com/en/enterprise-server@3.4/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token), then add it to the `.env` file. You can also add the organization name, the path where you want to clone the repositories, and the branch you want to clone (default is Home).
 
