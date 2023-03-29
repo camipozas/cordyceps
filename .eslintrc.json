@@ -5,7 +5,8 @@
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "eslint-config-prettier"
+    "eslint-config-prettier",
+    "remark-preset-lint-recommended"
   ],
   "parserOptions": {
     "project": "./tsconfig.json",
