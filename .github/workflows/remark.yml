@@ -15,13 +15,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
       - name: Install dependencies
         run: npm install
       - name: Run Remark
         run: npx remark README.md --output
       - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: "fix: linting issues in README.md"
           commit_user_name: "GitHub Actions"
           commit_user_email: "actions@github.com"
+          commit_options: "--author='camipozas <camipozas@users.noreply.github.com>'"
+          push_options: "--force-with-lease"
