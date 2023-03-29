@@ -12,22 +12,19 @@ on:
 jobs:
   remark:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
+
       - name: Install dependencies
-        run: npm install
+        run: yarn install
       - name: Run Remark
-        run: npx remark README.md --output
-      - name: Commit changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
-        uses: stefanzweifel/git-auto-commit-action@v4
+        run: yarn remark
+      - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          commit_message: "fix: linting issues in README.md"
-          commit_user_name: "GitHub Actions"
-          commit_user_email: "actions@github.com"
-          commit_options: "--author='camipozas <camipozas@users.noreply.github.com>' --allow-empty"
-          push_options: "--force-with-lease"
+          commit_message: Apply automatic fixes by remark
+          

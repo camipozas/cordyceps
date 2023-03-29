@@ -12,7 +12,8 @@
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.ts\"",
-    "test": "jest"
+    "test": "jest",
+    "remark": "npx remark README.md --output"
   },
   "repository": "git+https://github.com/camipozas/get-org-repo.git",
   "author": "camipozas <cpozasg1103@gmail.com>",
