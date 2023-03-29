@@ -12,7 +12,8 @@
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "format": "prettier --write \"**/*.ts\"",
-    "test": "jest"
+    "test": "jest",
+    "remark": "npx remark README.md --output"
   },
   "repository": "git+https://github.com/camipozas/get-org-repo.git",
   "author": "camipozas <cpozasg1103@gmail.com>",
@@ -40,6 +41,7 @@
     "prettier": "^2.8.7",
     "remark-cli": "^11.0.0",
     "remark-lint": "^9.1.1",
+    "remark-preset-lint-recommended": "^6.1.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.5"
   },
@@ -51,5 +53,10 @@
     "prompts": "^2.4.2",
     "simple-git": "^3.16.1",
     "zod": "^3.20.6"
+  },
+  "remarkConfig": {
+    "plugins": [
+      "remark-preset-lint-recommended"
+    ]
   }
 }
