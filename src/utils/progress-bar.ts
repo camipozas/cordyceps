@@ -49,7 +49,7 @@ export default class ProgressBar {
     );
   }
 
-  private getBar(length: number, char: string, color: (str: string) => string = (a) => a): string {
+  private getBar(length: number, char: string, color: (_str: string) => string = (_: string) => _): string {
     let str = '';
     for (let i = 0; i < length; i++) {
       str += char;

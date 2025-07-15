@@ -97,8 +97,10 @@ export const accessibleRepos = async (repoNames: string[], org: string) => {
         },
       });
       accessibleRepos.push(repoName);
-    } catch (error) {
+    } catch (err) {
+      const error = err as Error;
       log(chalk.red(`❌ ${repoName} is not accessible`));
+      log(chalk.gray(`Error: ${error.message}`));
     }
     bar.update(accessibleRepos.length);
   }

@@ -23,8 +23,10 @@ export const repoStatus = async (repoNames: string[], folder: string) => {
       try {
         await git.pull();
         log(chalk.green(`🐛 Pulled latest changes for ${repoName}`));
-      } catch (error) {
+      } catch (err) {
+        const error = err as Error;
         log(chalk.red(`❌ ${repoName} can't be pulled`));
+        log(chalk.gray(`Error: ${error.message}`));
       }
     }
   }
