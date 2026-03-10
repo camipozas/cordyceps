@@ -58,7 +58,7 @@
     "@types/prompts": "^2.4.9",
     "dotenv": "^17.2.0",
     "prompts": "^2.4.2",
-    "simple-git": "^3.28.0",
+    "simple-git": "^3.32.3",
     "zod": "^4.0.5"
   },
   "remarkConfig": {
